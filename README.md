@@ -1,4 +1,4 @@
 flask-base
 ==========
 
-Flask Base
+Make a symlink called 'settings.py' to 'local_settings.py'
