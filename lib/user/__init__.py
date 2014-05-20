@@ -6,4 +6,4 @@ from .models.user import AnonymousUser  # noqa
 from .models.user import User  # noqa
 from .src import login_required  # noqa
 from .src import WrongCredentials  # noqa
-from .middleware import get_current_user  # noqa
+from . import middleware  # noqa
