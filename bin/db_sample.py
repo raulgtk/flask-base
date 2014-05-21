@@ -12,3 +12,9 @@ def insert_sample_data():
     for user in user_list:
         db_add(user)
     db_commit()
+
+    # countries
+    from .db_sample_data.countries import country_list
+    for country in country_list:
+        db_add(country)
+    db_commit()

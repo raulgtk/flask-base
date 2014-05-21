@@ -27,4 +27,5 @@ DB_URI = 'sqlite:////tmp/test.db'
 LIBS = [
     'dbtools',
     'user',
+    'geo',
 ]
