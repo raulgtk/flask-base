@@ -11,6 +11,7 @@ from fabric.contrib.console import confirm
 
 from init import app
 from lib.dbtools import create_all
+from bin.db_sample import insert_sample_data
 
 @task
 def run(host=None):
@@ -21,11 +22,13 @@ def run(host=None):
     app.run()
 
 @task
-def db_reset():
+def db_devel():
+    """ Reset database and insert sample data """
     if not app.debug:
         abort("Database cannot be reset when in production mode (ie. DEBUG = False)")
 
     print "The database contents will be deleted."
     if confirm("Are you sure?"):
-        print "Resetting database..."
+        print "Inserting sample data..."
         create_all()
+        insert_sample_data()
