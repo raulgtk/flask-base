@@ -6,6 +6,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm.exc import MultipleResultsFound
 
 from flask import g
+from flask import request
 from flask import redirect
 from flask import url_for
 from flask import session
