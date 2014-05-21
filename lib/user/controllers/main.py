@@ -16,9 +16,9 @@ from ..src import log_user_out
 @bp.route('/login/')
 def login():
 
-    next = request.args.get('next', '/')
+    next = request.args.get('next')
     form = LoginForm(next=next)
-    return render_template("login.html",
+    return render_template('login.html',
         form=form,
         next=next)
 
@@ -39,7 +39,7 @@ def login_post():
             form.password.errors.append(u"Error")
             log_user_out()
 
-    return render_template("login.html",
+    return render_template('login.html',
         form=form)
 
 @bp.route('/logout/')
