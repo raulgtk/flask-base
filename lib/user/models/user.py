@@ -23,7 +23,7 @@ class AnonymousUser(object):
         return False
 
 class User(ModelMixin, Model):
-    __tablename__ = "users"
+    __tablename__ = 'users'
 
     session_id = Column(String(40), default=get_random_hash, unique=True, index=True)
     name = Column(String(50), nullable=False, default="")
