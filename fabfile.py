@@ -1,6 +1,6 @@
 # coding: utf-8
 
-import os
+import IPython
 
 from fabric.api import task
 from fabric.api import local
@@ -8,6 +8,7 @@ from fabric.api import settings
 from fabric.utils import abort
 from fabric.operations import prompt
 from fabric.contrib.console import confirm
+from flask.ext.collect import Collect
 
 from init import app
 from lib.dbtools import create_all
@@ -20,6 +21,19 @@ def run(host=None):
     if host:
         app.host = host
     app.run()
+
+@task
+def shell():
+    """ Run debug shell """
+    IPython.embed()
+
+@task
+def collect_static(host=None):
+    """ Collect static """
+
+    collect = Collect()
+    collect.init_app(app)
+    collect.collect(verbose=True)
 
 @task
 def db_devel():

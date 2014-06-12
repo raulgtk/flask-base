@@ -8,7 +8,7 @@ from conf.settings import STATIC_ROOT
 
 project_dir = os.path.normpath(os.path.dirname(os.path.dirname(__file__)))
 static_root = os.path.join(project_dir, STATIC_ROOT)
-app = Flask(__name__, static_folder=None)
+app = Flask(__name__, static_folder=None, static_url_path='static')
 
 # set configuration
 app.config.from_object('conf.settings')

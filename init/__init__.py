@@ -1,11 +1,14 @@
 # coding: utf-8
 
 from .application import app
-from .src import setup_packages
-from .src import setup_main
-from . import middleware
-from . import context
-from . import system
+from .src import setup_lib
+from .src import setup_web
+from .src import setup_adm
 
-setup_packages(app)
-setup_main(app)
+import middleware
+import context
+import system
+
+setup_lib(app)
+setup_web(app)
+setup_adm(app)
