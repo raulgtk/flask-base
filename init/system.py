@@ -7,10 +7,12 @@ from flask import render_template
 from flask import send_from_directory
 
 from .application import app
+from .application import manager_static
 
 if app.debug:
     @app.route('/static/<path:filename>')
     def static(filename=None):
+        manager_static.collect(verbose=False)
         static_root = app.config['STATIC_ROOT']
         asset_path = os.path.join(app.project_dir, static_root, filename)
         asset_dir = os.path.dirname(asset_path)

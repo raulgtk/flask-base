@@ -11,13 +11,13 @@ from fabric.contrib.console import confirm
 from flask.ext.collect import Collect
 
 from init import app
+from init import manager_static
 from lib.dbtools import create_all
 from bin.db_sample import insert_sample_data
 
 @task
 def run(host=None):
     """ Run development server """
-
     if host:
         app.host = host
     app.run()
@@ -30,10 +30,7 @@ def shell():
 @task
 def collect_static(host=None):
     """ Collect static """
-
-    collect = Collect()
-    collect.init_app(app)
-    collect.collect(verbose=True)
+    manager_static.collect(verbose=True)
 
 @task
 def db_devel():

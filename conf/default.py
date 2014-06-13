@@ -19,7 +19,6 @@ MEDIA_URL = '/media/'
 
 # target static dir
 COLLECT_STATIC_ROOT = 'static/'
-COLLECT_STATIC_URL = '/static/'
 COLLECT_STORAGE = 'flask.ext.collect.storage.file'
 
 # debugging

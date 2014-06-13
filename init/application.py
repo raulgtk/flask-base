@@ -3,6 +3,7 @@
 import os
 
 from flask import Flask
+from flask.ext.collect import Collect
 
 from conf.settings import STATIC_ROOT
 
@@ -15,3 +16,7 @@ app.config.from_object('conf.settings')
 app.secret_key = app.config['SECRET_KEY']
 app.debug = app.config['DEBUG']
 app.project_dir = project_dir
+
+# set collect
+manager_static = Collect()
+manager_static.init_app(app)
