@@ -12,6 +12,7 @@ from fabric.contrib.console import confirm
 from init import app
 from init import manager_static
 from lib.dbtools import create_all
+from lib.dbtools import drop_all
 from bin.db_sample import insert_sample_data
 
 @task
@@ -40,5 +41,6 @@ def db_devel():
     print "The database contents will be deleted."
     if confirm("Are you sure?"):
         print "Inserting sample data..."
+        drop_all(app.config['DB_URI'])
         create_all()
         insert_sample_data()

@@ -12,6 +12,7 @@ from .models.db import Model  # noqa
 from .models.mixin import ModelMixin  # noqa
 
 from .src import create_all  # noqa
+from .src import drop_all  # noqa
 from .src import db_add  # noqa
 from .src import db_flush  # noqa
 from .src import db_commit  # noqa
