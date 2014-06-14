@@ -8,7 +8,6 @@ from fabric.api import settings
 from fabric.utils import abort
 from fabric.operations import prompt
 from fabric.contrib.console import confirm
-from flask.ext.collect import Collect
 
 from init import app
 from init import manager_static
