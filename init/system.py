@@ -22,7 +22,7 @@ if app.debug:
     @app.route('/media/<path:filename>')
     def media(filename=None):
         media_root = app.config['MEDIA_ROOT']
-        asset_path = os.path.join(media_root, filename)
+        asset_path = os.path.join(app.project_dir, media_root, filename)
         asset_dir = os.path.dirname(asset_path)
         asset_filename = os.path.basename(asset_path)
         return send_from_directory(asset_dir, asset_filename)
