@@ -22,7 +22,7 @@ class Country(Model):
 
     @classmethod
     def query(cls, *args, **kwargs):
-        return cls._query(*args, **kwargs).order_by(cls.name.asc())
+        return cls._query(*args, **kwargs).order_by(cls.name.asc()).all()
 
     @classmethod
     def _query(cls, codes=None, iso3s=None):
