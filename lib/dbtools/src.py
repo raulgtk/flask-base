@@ -17,6 +17,9 @@ def db_flush():
 def db_commit():
     session.commit()
 
+def db_rollback():
+    session.rollback()
+
 def db_delete(instance):
     session.delete(instance)
 
