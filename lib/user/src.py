@@ -10,6 +10,7 @@ from flask import request
 from flask import redirect
 from flask import url_for
 from flask import session
+from werkzeug import exceptions
 
 from .models.user import User
 
@@ -52,3 +53,15 @@ def login_required(controller):
             return redirect(url_for('user.login', next=request.url))
         return controller(*args, **kargs)
     return decorated_controller
+
+def role_required(roles):
+    def decorator(controller):
+        @wraps(controller)
+        @login_required
+        def decorated_controller(*args, **kwargs):
+            role = g.user.has_role()
+            if role not in roles:
+                raise exceptions.Forbidden
+            return controller(*args, **kwargs)
+        return decorated_controller
+    return decorator

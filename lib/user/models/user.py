@@ -3,8 +3,9 @@
 import string
 import random
 
-from sqlalchemy import Column
-from sqlalchemy import String, Boolean
+from sqlalchemy import Column, ForeignKey
+from sqlalchemy import Integer, String, Boolean
+from sqlalchemy.orm import relationship
 
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
@@ -29,7 +30,9 @@ class User(ModelMixin, Model):
     name = Column(String(50), nullable=False, default="")
     email = Column(String(256), nullable=False, unique=True)
     password_hash = Column(String(66))
-    role = Column(String(10))
+
+    account_id = Column(Integer, ForeignKey('accounts.id'))
+    account = relationship('Account', back_populates='users')
 
     @classmethod
     def get(cls, id=None, email=None, session_id=None):
@@ -44,6 +47,12 @@ class User(ModelMixin, Model):
 
     def is_authenticated(self):
         return True
+
+    def has_role(self):
+        if self.account:
+            return self.account.type
+        else:
+            return None
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
