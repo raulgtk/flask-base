@@ -6,8 +6,7 @@ user_list = []
 
 ## admin
 admin = User()
-admin.name = u"Admin User"
+admin.username = u"Admin User"
 admin.email = "admin@domain.com"
-admin.set_password('admin1234')
-admin.role = "admin"
+admin.password = "admin1234"
 user_list.append(admin)

@@ -16,7 +16,7 @@ from ..src import log_user_out
 @bp.route('/login/')
 def login():
 
-    next = request.args.get('next')
+    next = request.args.get('next') or url_for('backend.home')
     form = LoginForm(next=next)
     return render_template('login.html',
         form=form,

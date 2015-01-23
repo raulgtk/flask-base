@@ -49,7 +49,7 @@ def log_user_out():
 def login_required(controller):
     @wraps(controller)
     def decorated_controller(*args, **kargs):
-        if not g.user.is_authenticated():
+        if not g.user.is_authenticated:
             return redirect(url_for('user.login', next=request.url))
         return controller(*args, **kargs)
     return decorated_controller
@@ -59,7 +59,7 @@ def role_required(roles):
         @wraps(controller)
         @login_required
         def decorated_controller(*args, **kwargs):
-            role = g.user.has_role()
+            role = g.user.role
             if role not in roles:
                 raise exceptions.Forbidden
             return controller(*args, **kwargs)
