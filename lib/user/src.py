@@ -29,6 +29,8 @@ def get_user(email, password):
         user = User.get(email=email)
     except (NoResultFound, MultipleResultsFound):
         raise WrongCredentials("Wrong user")
+    if not user.active:
+        raise WrongCredentials('User is not active')
 
     # check pass
     pass_ok = user.check_password(password)

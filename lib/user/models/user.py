@@ -32,6 +32,7 @@ class User(ModelMixin, Model):
     username = Column(String(50), nullable=False, default="")
     email = Column(String(256), nullable=False, unique=True)
     password_hash = Column(String(66))
+    active = Column(Boolean, default=True)
 
     account_id = Column(Integer, ForeignKey('accounts.id'))
     account = relationship('Account', back_populates='users')
