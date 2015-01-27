@@ -2,4 +2,4 @@
 
 from flask import Blueprint
 
-bp = Blueprint('geo', __name__)
+bp = Blueprint('lib.geo', __name__)

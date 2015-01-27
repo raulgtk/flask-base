@@ -2,4 +2,4 @@
 
 from flask import Blueprint
 
-bp = Blueprint('dbtools', __name__)
+bp = Blueprint('lib.dbtools', __name__)

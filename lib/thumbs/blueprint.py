@@ -2,4 +2,4 @@
 
 from flask import Blueprint
 
-bp = Blueprint('thumbs', __name__)
+bp = Blueprint('lib.thumbs', __name__)

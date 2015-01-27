@@ -2,4 +2,4 @@
 
 from flask import Blueprint
 
-bp = Blueprint('static', __name__, static_folder='static')
+bp = Blueprint('lib.static', __name__, static_folder='static')

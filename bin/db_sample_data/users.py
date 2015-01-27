@@ -9,5 +9,4 @@ admin = User()
 admin.username = u"Admin User"
 admin.email = "admin@domain.com"
 admin.password = "admin1234"
-admin.active = False
 user_list.append(admin)
