@@ -13,7 +13,7 @@ from init import app
 from init import manager_static
 from lib.dbtools import create_all
 from lib.dbtools import drop_all
-from bin.db_sample import insert_sample_data
+from db.sample.db_sample import insert_sample_data
 
 @task
 def run(host=None):
