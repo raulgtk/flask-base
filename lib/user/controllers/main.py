@@ -15,35 +15,27 @@ from ..src import log_user_out
 
 @bp.route('/login/')
 def login():
-
-    next = request.args.get('next') or url_for('adm.backend.home')
-    form = LoginForm(next=next)
+    form = LoginForm()
     return render_template('login.html',
-        form=form,
-        next=next)
+        form=form)
 
 @bp.route('/login/', methods=['POST'])
 def login_post():
-
     form = LoginForm(request.formdata)
     if form.validate():
-        next = form.next.data
         email = form.email.data
         password = form.password.data
-
         try:
             user = get_user(email, password)
             log_user_in(user)
-            return redirect(next)
+            return redirect(url_for('adm.backend.home'))
         except WrongCredentials:
             form.password.errors.append(u"Error")
             log_user_out()
-
     return render_template('login.html',
         form=form)
 
 @bp.route('/logout/')
 def logout():
-
     log_user_out()
     return redirect(url_for('lib.user.login'))

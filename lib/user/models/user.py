@@ -35,7 +35,7 @@ class User(ModelMixin, Model):
     active = Column(Boolean, default=True)
 
     account_id = Column(Integer, ForeignKey('accounts.id'))
-    account = relationship('Account', back_populates='users')
+    account = relationship('Account', back_populates='user')
 
     @hybrid_property
     def password(self):

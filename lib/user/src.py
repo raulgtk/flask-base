@@ -52,7 +52,7 @@ def login_required(controller):
     @wraps(controller)
     def decorated_controller(*args, **kargs):
         if not g.user.is_authenticated:
-            return redirect(url_for('lib.user.login', next=request.url))
+            return redirect(url_for('lib.user.login'))
         return controller(*args, **kargs)
     return decorated_controller
 

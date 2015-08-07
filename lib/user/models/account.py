@@ -11,9 +11,8 @@ from lib.dbtools import ModelMixin
 class Account(ModelMixin, Model):
     __tablename__ = 'accounts'
 
-    name = Column(String(64), nullable=False)
     type = Column(String(32))
-    users = relationship('User', back_populates='account')
+    user = relationship('User', uselist=False, back_populates='account', cascade='all, delete-orphan')
 
     __mapper_args__ = {
         'polymorphic_on': 'type',

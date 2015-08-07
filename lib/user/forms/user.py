@@ -5,8 +5,10 @@ from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import Required, Optional, Email
 
 class UserForm(Form):
+    username = StringField(u"Usuario", [
+        Required(u"El usuario es obligatorio")])
     email = StringField(u"Email", [
-        Required(u"El email es obligatorio"),
+        Required(u"El email es obligatorio"), 
         Email(u"El email no es correcto")])
     password = PasswordField(u"Contraseña", [Optional()])
     active = BooleanField(u"¿Activo?", default=True)
