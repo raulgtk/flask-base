@@ -1,0 +1,146 @@
+{% macro field_errors(field) %}
+    {% if field.errors %}
+        <ul class="has-error-list">
+        {% for error in field.errors %}
+            <li>{{ error|e }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% macro text_field(field) %}
+    {% set class_ = kwargs.pop('class', '') %}
+    {% set class_ = class_ + " form-control" %}
+    <div class="form-group {{ 'has-error' if field.errors else '' }}">
+        <label class="control-label">{{ field.label.text|safe }}</label>
+        {{ field(class_=class_, **kwargs) }}
+    </div>
+    {{ field_errors(field) }}
+{% endmacro %}
+
+{% macro check_field(field) %}
+    {% set class_ = kwargs.pop('class', '') %}
+    {% set class_ = class_ + ' icheck' %}
+    <div class="form-group {{ 'has-error' if field.errors else '' }}">
+        <div class="checkbox">
+            <label>
+                {{ field(class_=class_, **kwargs) }}
+                {{ field.label.text|safe }}
+            </label>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro date_field(field) %}
+    {% set class_=kwargs.pop('class', '') %}
+    {% set class_=class_ + "form-control" %}
+    <div class="form-group {{ 'has-error' if field.errors else '' }}">
+        <label class="control-label"> {{ field.label.text|safe }}</label>
+        <div class="input-group date datetime" data-min-view="2" data-date-format="dd/mm/yyyy">
+            {{ field(class_=class_, **kwargs) }}
+            <span class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
+    </div>
+    {{ field_errors(field) }}
+{% endmacro %}
+
+{% macro datetime_field(field) %}
+    {% set class_=kwargs.pop('class', '') %}
+    {% set class_=class_ + "form-control" %}
+    <div class="form-group {{ 'has-error' if field.errors else '' }}">
+        <label class="control-label"> {{ field.label.text|safe }}</label>
+        <div class="input-group date datetime" data-start-view="2" data-date-format="dd/mm/yyyy hh:ii">
+            {{ field(class_=class_, **kwargs) }}
+            <span class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
+    </div>
+    {{ field_errors(field) }}
+{% endmacro %}
+
+{% macro price_field(field) %}
+    {% set class_=kwargs.pop('class', '') %}
+    {% set class_=class_ + "form-control" %}
+    <div class="form-group {{ 'has-error' if field.errors else '' }}">
+        <label class="control-label"> {{ field.label.text|safe }}</label>
+        <div class="input-group">
+            {{ field(class_=class_, **kwargs) }}
+            <span class="input-group-addon">€</span>
+        </div>
+    </div>
+    {{ field_errors(field) }}
+{% endmacro %}
+
+{% macro percent_field(field) %}
+    {% set class_=kwargs.pop('class', '') %}
+    {% set class_=class_ + "form-control" %}
+    <div class="form-group {{ 'has-error' if field.errors else '' }}">
+        <label class="control-label"> {{ field.label.text|safe }}</label>
+        <div class="input-group">
+            {{ field(class_=class_, **kwargs) }}
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    {{ field_errors(field) }}
+{% endmacro %}
+
+{% macro uniq_field(field) %}
+    {% set class_=kwargs.pop('class', '') %}
+    {% set class_=class_ + "form-control" %}
+    <div class="form-group {{ 'has-error' if field.errors else '' }}">
+        <label class="control-label"> {{ field.label.text|safe }}</label>
+        <div class="input-group">
+            {{ field(class_=class_, **kwargs) }}
+            <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+        </div>
+    </div>
+    {{ field_errors(field) }}
+{% endmacro %}
+
+{% macro image_field(field) %}
+    {% set label_ = kwargs.pop('label', '') %}
+    {% set image_ = kwargs.pop('image', '') %}
+    {% set class_ = kwargs.pop('class', '') %}
+    {% set class_ = class_ + " form-control filestyle" %}
+    {% set _ = kwargs.setdefault('data-buttonText', label_) %}
+    {% set _ = kwargs.setdefault('data-buttonName', 'btn-primary') %}
+    <div class="form-group {{ 'has-error' if field.errors else '' }}">
+        <label class="control-label"> {{ field.label.text|safe }}</label>
+        {% if image_ == None or image_  %}
+        <div class="thumbnail">
+            <img src="{{ image_|thumb('200x200') }}">
+        </div>
+        {% endif %}
+        {{ field(class_=class_, **kwargs) }}
+    </div>
+    {{ field_errors(field) }}
+{% endmacro %}
+
+{% macro file_field(field) %}
+    {% set label_ = kwargs.pop('label', '') %}
+    {% set file_ = kwargs.pop('file', '') %}
+    {% set class_ = kwargs.pop('class', '') %}
+    {% set class_ = class_ + " form-control filestyle" %}
+    {% set _ = kwargs.setdefault('data-buttonText', label_) %}
+    {% set _ = kwargs.setdefault('data-buttonName', 'btn-primary') %}
+    <div class="form-group {{ 'has-error' if field.errors else '' }}">
+        <label class="control-label"> {{ field.label.text|safe }}</label>
+        {% if file_ %}
+        <div class="link">
+            <a href="/media/files/{{ file_ }}">{{ file_ }}</a>
+        </div>
+        {% endif %}
+        {{ field(class_=class_, **kwargs) }}
+    </div>
+    {{ field_errors(field) }}
+{% endmacro %}
+
+{% macro multiple_field(field) %}
+    {% set class_ = kwargs.pop('class', '') %}
+    {% set class_ = class_ + " form-control multiselect" %}
+    <div class="form-group well {{ 'has-error' if field.errors else '' }}">
+        <label>{{ field.label.text|safe }}</label>
+        {{ field(class_=class_, **kwargs) }}
+    </div>
+    {{ field_errors(field) }}
+{% endmacro %}
+
